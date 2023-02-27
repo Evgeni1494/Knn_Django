@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Result</title>
-</head>
-<body>
-    <h1>House Price Result</h1>
-    <p>The price of the house in {{ zipcode }} with {{ sqft_living }} sqft of living space, {{ bathrooms }} bathrooms, and a grade of {{ grade }} is predicted to be: {{ prediction }}</p>
-    <a href="{% url 'home' %}">Back to Home</a>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Résultat de la prédiction</h1>
+  <p>Le prix de la maison prédit est : {{ prediction }} $</p>
+  <p><a href="{% url 'home' %}">Retourner à la page d'accueil</a></p>
+{% endblock %}
+

@@ -1,15 +1,46 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-</head>
-<body>
-    <h1>House Price Predictor</h1>
-    <form method="POST" action="{% url 'predict' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Predict</button>
-    </form>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+  <form action={% url 'result' %} method="POST">
+    {% csrf_token %}
+    <label for="zipcode">Code postal :</label>
+    <input type="text" id="zipcode" name="zipcode" required><br><br>
+
+    <label for="view">Vue :</label>
+    <input type="text" id="view" name="view" required><br><br>
+
+    <label for="grade">Grade :</label>
+    <input type="text" id="grade" name="grade" required><br><br>
+
+    <label for="sqft_living">Surface habitable (en pieds carrés) :</label>
+    <input type="text" id="sqft_living" name="sqft_living" required><br><br>
+
+    <label for="bathrooms">Nombre de salles de bain :</label>
+    <input type="text" id="bathrooms" name="bathrooms" required><br><br>
+
+    <label for="waterfront">Vue sur la mer :</label>
+    <select id="waterfront" name="waterfront" required>
+      <option value="">-- Veuillez choisir une option --</option>
+      <option value="0">Non</option>
+      <option value="1">Oui</option>
+    </select><br><br>
+
+    <label for="sqft_above">Surface au sol (hors sous-sol) (en pieds carrés) :</label>
+    <input type="text" id="sqft_above" name="sqft_above" required><br><br>
+
+    <label for="sqft_basement">Surface du sous-sol (en pieds carrés) :</label>
+    <input type="text" id="sqft_basement" name="sqft_basement" required><br><br>
+
+    <label for="sqft_living15">Surface habitable voisine (en pieds carrés) :</label>
+    <input type="text" id="sqft_living15" name="sqft_living15" required><br><br>
+
+    <label for="days_since_reference_date">Nombre de jours depuis la date de référence :</label>
+    <input type="text" id="days_since_reference_date" name="days_since_reference_date" required><br><br>
+
+    <input type="submit" value="Prédire">
+  </form>
+
+  {% if prediction %}
+    <h2>Le prix prédit est : {{ prediction }} $</h2>
+  {% endif %}
+{% endblock %}
