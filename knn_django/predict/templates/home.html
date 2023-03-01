@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <form action={% url 'result' %} method="POST">
+  <p class=paragraph>Ceci est un test</p>
+  <form class = formulaire action={% url 'result' %} method="POST">
     {% csrf_token %}
     <label for="zipcode">Code postal :</label>
     <input type="text" id="zipcode" name="zipcode" required><br><br>
