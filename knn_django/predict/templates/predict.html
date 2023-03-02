@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load crispy_forms_tags %}
 {% block content %}
   <form method="POST">
     {% csrf_token %}
@@ -38,6 +38,7 @@
     <input type="text" id="days_since_reference_date" name="days_since_reference_date" required><br><br>
 
     <input type="submit" value="Prédire">
+    
   </form>
 
   {% if prediction %}
